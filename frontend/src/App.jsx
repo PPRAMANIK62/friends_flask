@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Container, Stack, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import UserGrid from "./components/UserGrid";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Stack minH={"100vh"}>
+        <Navbar setUsers={setUsers} />
+
+        <Container maxW={"1200px"} my={4}>
+          <Text
+            fontSize={{ base: "3xl", md: "50" }}
+            fontWeight={"bold"}
+            letterSpacing={"2px"}
+            textTransform={"uppercase"}
+            textAlign={"center"}
+            mb={8}
+          >
+            <Text
+              as={"span"}
+              bgGradient={"linear(to-r, cyan.400, blue.500)"}
+              bgClip={"text"}
+            >
+              My Besties
+            </Text>
+            🚀
+          </Text>
+
+          <UserGrid users={users} setUsers={setUsers} />
+        </Container>
+      </Stack>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
